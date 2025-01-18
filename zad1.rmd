@@ -1,14 +1,29 @@
 
 ---
 title: Przepracowani i biedni - zależność między godzinami pracy a bogactwem narodu
-output: html_document
+author: "Julia Dyrga, Rafał Klimek"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2 
+    toc_float: true
+date: "2024-12-28"
 ---
 
+```{r include=FALSE}
+library(WDI)
+library(ggplot2)
+```
+
 Sprawdzimy ilość przepracowanych godzin dla różnych krajów i przeciwstawimy je:
-- PKB per capita - bardziej zaawansowane gospodarki będą mieć większe PKB (wziąłem też PPP)
-- oczekiwanej długości życia
-- Współczynnikowi Giniego
-- zapisu na uczelnie wyższe
+
+* PKB per capita - bardziej zaawansowane gospodarki będą mieć większe PKB (wziąłem też PPP)
+
+* oczekiwanej długości życia
+
+* Współczynnikowi Giniego
+
+* zapisu na uczelnie wyższe
 
 Dane będą analizowane dla 2010 roku
 ```{r}
@@ -55,7 +70,7 @@ hist(data_no_countries$weekly_hours_worked_15_64, breaks = 4, xlab = "Godziny pr
      main = "Godziny pracy w tyg dla krajow")
 ```
 
-histogram wizualnie pokazuje mocne skupienie wokół średniej
+Histogram wizualnie pokazuje mocne skupienie wokół średniej
 
 ```{r}
 hist(data_no_countries$life_expectancy, breaks = 6, xlab = "Dlugosc zycia (lata)", ylab= "Ilosc wynikow",
