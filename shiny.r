@@ -1,6 +1,6 @@
 library(shinydashboard)
 library(WDI)
-
+library(shiny)
 
 # DATA PREPARING
 countries <- c(
@@ -106,7 +106,7 @@ server <- function(input, output, session) {
   observeEvent(input$select_all, {
     updateSelectInput(session, "country", selected = countries)
   })
-
+  
   observeEvent(input$unselect_all, {
     updateSelectInput(session, "country", selected = c(""))
   })
@@ -133,14 +133,14 @@ server <- function(input, output, session) {
     print("Kwantyle")
     quantile(selected_data[, input$vector]) # TODO: Fix this width
   })
-
+  
   output$plot1 <- renderPlot({
     selected_data <- data[data$iso2c.x %in% input$country, ]
     hist(selected_data[, input$vector], col="lightblue",border = "darkblue",probability = T)
     lines(density(selected_data[, input$vector]),col="red",lty="dotdash",lwd=3)
     grid()
   })
-
+  
   output$plot2 <- renderPlot({
     selected_data <- data[data$iso2c.x %in% input$country, ]
     boxplot(selected_data[, input$vector], col='red', border="darkblue",horizontal = T)
@@ -149,9 +149,9 @@ server <- function(input, output, session) {
   output$plot3 <- renderPlot({
     selected_data <- data[data$iso2c.x %in% input$country, ]
     plot(selected_data[, input$vector], col='red', type="b", pch=19)
-
+    
   })
-
+  
   output$correlation <- renderPrint({
     selected_data <- data[data$iso2c.x %in% input$country, c('gdp_per_capita', 'gdp_per_capita_ppp', 'life_expectancy', 'income_inequality', 'enrollment_tetriary', 'weekly_hours_worked_15_64')]
     print("Korelacja")
