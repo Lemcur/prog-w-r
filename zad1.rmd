@@ -120,7 +120,6 @@ ggplot(data_no_countries, aes(weekly_hours_worked_15_64, life_expectancy)) +
 Mocno rozsiane dane wizualnie potwierdzają umiarkowane korelacje do długości pracy.
 Jednak na żadnym wykresie nie widać mocnego trendu.
 
-#
 ```{r}
 simple_model <- lm(formula = weekly_hours_worked_15_64 ~ gdp_per_capita, data = data_no_countries)
 summary(simple_model) # najlepszy R2
